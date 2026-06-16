@@ -248,20 +248,25 @@ service cloud.firestore {
 
 ## 🎨 Ekran Görüntüleri
 
-### Kimlik Doğrulama & Ana Sayfa
-| Giriş / Kayıt | Ana Sayfa | Plan Ekleme |
+### Kimlik Dogrulama ve Ana Sayfa
+| Giris / Kayit | Ana Sayfa | Plan Ekleme |
 |:-:|:-:|:-:|
-| ![Giriş Sayfası](screenshots/auth.png) | ![Ana Sayfa](screenshots/home.png) | ![Plan Ekleme](screenshots/plan.png) |
+| ![Giris Sayfasi](screenshots/auth.jpg) | ![Ana Sayfa](screenshots/home.jpg) | ![Plan Ekleme](screenshots/plan.jpg) |
 
-### Pomodoro & Başarı
-| Pomodoro Zamanlayıcı | Görev Tamamlama | Performans Analizi |
+### Pomodoro ve Basari
+| Pomodoro Zamanlayici | Gorev Tamamlama | Performans Analizi |
 |:-:|:-:|:-:|
-| ![Pomodoro](screenshots/pomodoro.png) | ![Confetti](screenshots/confetti.png) | ![Performans](screenshots/tracking.png) |
+| ![Pomodoro](screenshots/pomodoro.jpg) | ![Confetti](screenshots/confetti.jpg) | ![Performans](screenshots/tracking.jpg) |
 
-### Öneri Sistemi & Mentor & Puan
-| Akıllı Öneriler | Mentor & Sohbet | YKS Puan Hesaplama |
+### Akilli Oneri Sistemi
+| Oneriler 1 | Oneriler 2 | Oneriler 3 |
 |:-:|:-:|:-:|
-| ![Öneriler](screenshots/suggestions.png) | ![Mentor](screenshots/mentor.png) | ![Puan Hesaplama](screenshots/puan.png) |
+| ![Oneriler 1](screenshots/suggestions1.jpg) | ![Oneriler 2](screenshots/suggestions2.jpg) | ![Oneriler 3](screenshots/suggestions3.jpg) |
+
+### Mentor ve Puan Hesaplama
+| Mentor ve Sohbet | YKS Puan Hesaplama |
+|:-:|:-:|
+| ![Mentor](screenshots/mentor.jpg) | ![Puan Hesaplama](screenshots/puan.jpg) |
 
 ---
 
