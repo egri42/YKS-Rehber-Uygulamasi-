@@ -1,17 +1,23 @@
-# ilk_projem
+# YKS Rehber Uygulaması
 
-A new Flutter project.
+Flutter ve Firebase kullanılarak geliştirilmiş YKS hazırlık uygulamasıdır.
 
-## Getting Started
+## Özellikler
 
-This project is a starting point for a Flutter application.
+- Ders planı oluşturma
+- Pomodoro zamanlayıcısı
+- Hedef belirleme
+- İstatistik ve analiz ekranları
+- Firebase Firestore entegrasyonu
+- Bildirim sistemi
 
-A few resources to get you started if this is your first Flutter project:
+## Kullanılan Teknolojiler
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- Flutter
+- Dart
+- Firebase Firestore
+- Firebase Authentication
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Geliştirici
+
+Mehmet Emin Eğri
