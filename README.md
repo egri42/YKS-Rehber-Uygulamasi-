@@ -99,77 +99,79 @@ Uygulama, öğrencinin çalışma düzenini **algoritmik olarak analiz eder**, k
 ## 📁 Proje Dosya Yapısı
 
 ```
-ilk_projem/
-├── lib/
-│   ├── main.dart                          # Uygulama giriş noktası, routing, auth wrapper
-│   ├── plan_store.dart                    # Plan veri yönetimi (Firestore + Singleton)
-│   ├── firebase_options.dart              # Firebase yapılandırma ayarları
-│   │
-│   ├── data/
-│   │   └── curriculum_data.dart           # TYT/AYT müfredat veritabanı + ders renkleri
-│   │
-│   ├── logic/
-│   │   └── study_session_store.dart       # Pomodoro seans takibi (Firestore + Singleton)
-│   │
-│   ├── services/
-│   │   └── auth_service.dart              # Firebase Auth singleton servisi
-│   │
-│   └── screens/
-│       ├── home_page.dart                 # Ana sayfa — Dashboard, YKS sayacı, verimlilik
-│       ├── PlanPage.dart                  # Günlük plan — Timeline, ders ekleme/silme
-│       ├── pomodoro_page.dart             # Pomodoro zamanlayıcı — Odak + mola döngüsü
-│       ├── study_tracking_page.dart       # Performans analizi — Grafikler, öneriler
-│       ├── puan_hesapla_page.dart         # YKS puan/sıralama tahmini
-│       ├── yks_motoru.dart                # Hibrit hesaplama motoru (2024/2025 verileri)
-│       ├── auth_page.dart                 # Giriş/kayıt sayfası
-│       ├── mentor_list_page.dart          # Mentor listesi ve profil kartları
-│       └── chat_page.dart                 # Mentor sohbet arayüzü
-│
-├── assets/
-│   └── icon/
-│       └── app_icon.png                   # Uygulama ikonu
-│
-├── android/                               # Android platform ayarları
-├── ios/                                   # iOS platform ayarları
-├── web/                                   # Web platform ayarları
-├── windows/                               # Windows platform ayarları
-├── linux/                                 # Linux platform ayarları
-├── macos/                                 # macOS platform ayarları
-├── test/                                  # Birim testleri
-│
-├── pubspec.yaml                           # Proje bağımlılıkları ve yapılandırma
-├── pubspec.lock                           # Bağımlılık kilit dosyası
-├── firebase.json                          # Firebase hosting yapılandırması
-├── analysis_options.yaml                  # Dart analiz kuralları
-└── README.md                              # Bu dosya
+YKS-Rehber-Uygulamasi-/
+|-- lib/
+|   |-- main.dart                          # Uygulama giris noktasi, routing, auth wrapper
+|   |-- plan_store.dart                    # Plan veri yonetimi (Firestore + Singleton)
+|   |-- firebase_options.dart              # Firebase yapilandirma ayarlari
+|   |
+|   |-- data/
+|   |   +-- curriculum_data.dart           # TYT/AYT mufredat veritabani + ders renkleri
+|   |
+|   |-- logic/
+|   |   +-- study_session_store.dart       # Pomodoro seans takibi (Firestore + Singleton)
+|   |
+|   |-- services/
+|   |   +-- auth_service.dart              # Firebase Auth singleton servisi
+|   |
+|   +-- screens/
+|       |-- home_page.dart                 # Ana sayfa - Dashboard, YKS sayaci, verimlilik
+|       |-- PlanPage.dart                  # Gunluk plan - Timeline, ders ekleme/silme
+|       |-- pomodoro_page.dart             # Pomodoro zamanlayici - Odak + mola dongusu
+|       |-- study_tracking_page.dart       # Performans analizi - Grafikler, oneriler
+|       |-- puan_hesapla_page.dart         # YKS puan/siralama tahmini
+|       |-- yks_motoru.dart                # Hibrit hesaplama motoru (2024/2025 verileri)
+|       |-- auth_page.dart                 # Giris/kayit sayfasi
+|       |-- mentor_list_page.dart          # Mentor listesi ve profil kartlari
+|       +-- chat_page.dart                 # Mentor sohbet arayuzu
+|
+|-- assets/
+|   +-- icon/
+|       +-- app_icon.png                   # Uygulama ikonu
+|
+|-- android/                               # Android platform ayarlari
+|-- ios/                                   # iOS platform ayarlari
+|-- web/                                   # Web platform ayarlari
+|-- windows/                               # Windows platform ayarlari
+|-- linux/                                 # Linux platform ayarlari
+|-- macos/                                 # macOS platform ayarlari
+|-- test/                                  # Birim testleri
+|
+|-- pubspec.yaml                           # Proje bagimliliklari ve yapilandirma
+|-- pubspec.lock                           # Bagimlilik kilit dosyasi
+|-- firebase.json                          # Firebase hosting yapilandirmasi
+|-- analysis_options.yaml                  # Dart analiz kurallari
++-- README.md                              # Bu dosya
 ```
 
 ---
 
-## 🏗️ Mimari Yapı
+## Mimari Yapi
 
-```
-┌─────────────────────────────────────────────────┐
-│                    UI Layer                      │
-│  (Screens: HomePage, PlanPage, PomodoroPage...) │
-├─────────────────────────────────────────────────┤
-│               State Management                   │
-│   PlanStore (Singleton + ChangeNotifier)          │
-│   StudySessionStore (Singleton + ChangeNotifier)  │
-├─────────────────────────────────────────────────┤
-│                 Services                         │
-│            AuthService (Singleton)                │
-├─────────────────────────────────────────────────┤
-│                  Data Layer                      │
-│   curriculum_data.dart (Müfredat Veritabanı)     │
-│   yks_motoru.dart (Hesaplama Motoru)             │
-├─────────────────────────────────────────────────┤
-│              Firebase Backend                    │
-│    Cloud Firestore     │    Firebase Auth         │
-│   (Gerçek zamanlı      │  (E-posta/Şifre         │
-│    plan & seans        │   kimlik doğrulama)      │
-│    senkronizasyonu)    │                          │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    A["UI Layer - Screens"] --> B["State Management"]
+    B --> C["Services"]
+    B --> D["Data Layer"]
+    C --> E["Firebase Backend"]
+    D --> E
+
+    A --- A1["HomePage"]
+    A --- A2["PlanPage"]
+    A --- A3["PomodoroPage"]
+    A --- A4["StudyTrackingPage"]
+    A --- A5["AuthPage"]
+
+    B --- B1["PlanStore - Singleton + ChangeNotifier"]
+    B --- B2["StudySessionStore - Singleton + ChangeNotifier"]
+
+    C --- C1["AuthService - Singleton"]
+
+    D --- D1["curriculum_data.dart"]
+    D --- D2["yks_motoru.dart"]
+
+    E --- E1["Cloud Firestore"]
+    E --- E2["Firebase Auth"]
 ```
 
 **Veri Akışı:**
@@ -192,9 +194,9 @@ ilk_projem/
 ### Adımlar
 
 ```bash
-# 1. Projeyi klonlayın
-git clone https://github.com/KULLANICI_ADI/ilk_projem.git
-cd ilk_projem
+# 1. Projeyi klonlayin
+git clone https://github.com/egri42/YKS-Rehber-Uygulamasi-.git
+cd YKS-Rehber-Uygulamasi-
 
 # 2. Bağımlılıkları yükleyin
 flutter pub get
