@@ -251,22 +251,22 @@ service cloud.firestore {
 ### Kimlik Dogrulama ve Ana Sayfa
 | Giris / Kayit | Ana Sayfa | Plan Ekleme |
 |:-:|:-:|:-:|
-| ![Giris Sayfasi](screenshots/auth.jpg) | ![Ana Sayfa](screenshots/home.jpg) | ![Plan Ekleme](screenshots/plan.jpg) |
+| ![Giris Sayfasi](screenshots/auth.jpeg) | ![Ana Sayfa](screenshots/home.jpeg) | ![Plan Ekleme](screenshots/plan.jpeg) |
 
 ### Pomodoro ve Basari
 | Pomodoro Zamanlayici | Gorev Tamamlama | Performans Analizi |
 |:-:|:-:|:-:|
-| ![Pomodoro](screenshots/pomodoro.jpg) | ![Confetti](screenshots/confetti.jpg) | ![Performans](screenshots/tracking.jpg) |
+| ![Pomodoro](screenshots/pomodoro.jpeg) | ![Confetti](screenshots/confetti.jpeg) | ![Performans](screenshots/tracking.jpeg) |
 
 ### Akilli Oneri Sistemi
 | Oneriler 1 | Oneriler 2 | Oneriler 3 |
 |:-:|:-:|:-:|
-| ![Oneriler 1](screenshots/suggestions1.jpg) | ![Oneriler 2](screenshots/suggestions2.jpg) | ![Oneriler 3](screenshots/suggestions3.jpg) |
+| ![Oneriler 1](screenshots/suggestions1.jpeg) | ![Oneriler 2](screenshots/suggestions2.jpeg) | ![Oneriler 3](screenshots/suggestions3.jpeg) |
 
 ### Mentor ve Puan Hesaplama
 | Mentor ve Sohbet | YKS Puan Hesaplama |
 |:-:|:-:|
-| ![Mentor](screenshots/mentor.jpg) | ![Puan Hesaplama](screenshots/puan.jpg) |
+| ![Mentor](screenshots/mentor.jpeg) | ![Puan Hesaplama](screenshots/puan.jpeg) |
 
 ---
 
