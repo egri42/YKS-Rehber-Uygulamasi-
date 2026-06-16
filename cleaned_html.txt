@@ -1,0 +1,986 @@
+1: <!DOCTYPE html>
+2: <html lang="tr">
+3: <head>
+4: <meta charset="UTF-8">
+5: <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6: <title>SKY TRAVEL VIP - Lüks Transfer Hizmetleri</title>
+7: <link rel="preconnect" href="https://fonts.googleapis.com">
+8: <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+9: </head>
+10: <body>
+11: 
+12: <div id="app"></div>
+13: <style>
+14: :root {
+15: --gold: #C9A84C;
+16: --gold-light: #E8C97E;
+17: --gold-dark: #9A7A2E;
+18: --black: #080808;
+19: --black-soft: #111111;
+20: --black-card: #141414;
+21: --black-border: #1e1e1e;
+22: --white: #FFFFFF;
+23: --white-muted: #c8c8c8;
+24: --white-dim: #888888;
+25: --section-bg: #0d0d0d;
+26: --font-display: 'Cormorant Garamond', serif;
+27: --font-body: 'Montserrat', sans-serif;
+28: }
+29: 
+30: *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+31: html { scroll-behavior: smooth; }
+32: body {
+33: background: var(--black);
+34: color: var(--white);
+35: font-family: var(--font-body);
+36: font-weight: 300;
+37: line-height: 1.7;
+38: overflow-x: hidden;
+39: }
+40: ::-webkit-scrollbar { width: 4px; }
+41: ::-webkit-scrollbar-track { background: var(--black); }
+42: ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
+43: 
+44: /* NAVBAR */
+45: #navbar {
+46: position: fixed;
+47: top: 0; left: 0; right: 0;
+48: z-index: 1000;
+49: padding: 22px 60px;
+50: display: flex;
+51: align-items: center;
+52: justify-content: space-between;
+53: transition: all 0.4s ease;
+54: background: transparent;
+55: }
+56: #navbar.scrolled {
+57: background: rgba(8,8,8,0.97);
+58: padding: 14px 60px;
+59: border-bottom: 1px solid rgba(201,168,76,0.15);
+60: backdrop-filter: blur(12px);
+61: }
+62: .nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+63: .nav-logo-top {
+64: font-family: var(--font-display);
+65: font-size: 26px; font-weight: 600;
+66: letter-spacing: 6px; color: var(--white);
+67: }
+68: .nav-logo-top span { color: var(--gold); }
+69: .nav-logo-sub {
+70: font-family: var(--font-body);
+71: font-size: 9px; letter-spacing: 5px;
+72: color: var(--gold); text-transform: uppercase;
+73: font-weight: 500; margin-top: 3px;
+74: }
+75: .nav-links { display: flex; gap: 40px; list-style: none; }
+76: .nav-links a {
+77: text-decoration: none; color: var(--white-muted);
+78: font-size: 11px; letter-spacing: 3px;
+79: text-transform: uppercase; font-weight: 500;
+80: transition: color 0.3s; position: relative;
+81: }
+82: .nav-links a::after {
+83: content: ''; position: absolute;
+84: bottom: -4px; left: 0;
+85: width: 0; height: 1px;
+86: background: var(--gold); transition: width 0.3s;
+87: }
+88: .nav-links a:hover { color: var(--gold); }
+89: .nav-links a:hover::after { width: 100%; }
+90: .nav-cta {
+91: background: transparent;
+92: border: 1px solid var(--gold);
+93: color: var(--gold); padding: 10px 24px;
+94: font-family: var(--font-body);
+95: font-size: 10px; letter-spacing: 3px;
+96: text-transform: uppercase; cursor: pointer;
+97: transition: all 0.3s; text-decoration: none;
+98: }
+99: .nav-cta:hover { background: var(--gold); color: var(--black); }
+100: .hamburger {
+101: display: none; flex-direction: column;
+102: gap: 5px; cursor: pointer; padding: 4px;
+103: }
+104: .hamburger span {
+105: display: block; width: 24px; height: 1px;
+106: background: var(--gold); transition: all 0.3s;
+107: }
+108: 
+109: /* HERO */
+110: #hero {
+111: position: relative;
+112: height: 100vh; min-height: 700px;
+113: display: flex; align-items: center;
+114: justify-content: center; overflow: hidden;
+115: }
+116: .hero-bg {
+117: position: absolute; inset: 0;
+119: background-size: cover; background-position: center;
+120: transform: scale(1.08);
+121: animation: heroZoom 12s ease-out forwards;
+122: }
+123: @keyframes heroZoom {
+124: from { transform: scale(1.08); }
+125: to { transform: scale(1.0); }
+126: }
+127: .hero-overlay {
+128: position: absolute; inset: 0;
+129: background: linear-gradient(135deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.5) 50%, rgba(8,8,8,0.75) 100%);
+130: }
+131: .hero-overlay-bottom {
+132: position: absolute; bottom: 0; left: 0; right: 0;
+133: height: 200px;
+134: background: linear-gradient(to top, var(--black), transparent);
+135: }
+136: .hero-content {
+137: position: relative; z-index: 2;
+138: text-align: center; padding: 0 20px;
+139: opacity: 0; animation: fadeUp 1.2s ease 0.5s forwards;
+140: }
+141: @keyframes fadeUp {
+142: from { opacity: 0; transform: translateY(40px); }
+143: to { opacity: 1; transform: translateY(0); }
+144: }
+145: .hero-eyebrow {
+146: display: inline-flex; align-items: center; gap: 14px;
+147: font-size: 10px; letter-spacing: 5px;
+148: color: var(--gold); text-transform: uppercase;
+149: font-weight: 500; margin-bottom: 28px;
+150: }
+151: .hero-eyebrow::before, .hero-eyebrow::after {
+152: content: ''; width: 40px; height: 1px;
+153: background: var(--gold); opacity: 0.6;
+154: }
+155: .hero-title {
+156: font-family: var(--font-display);
+157: font-size: clamp(52px, 9vw, 100px);
+158: font-weight: 300; line-height: 0.95;
+159: letter-spacing: 2px; color: var(--white);
+160: margin-bottom: 12px;
+161: }
+162: .hero-title strong {
+163: color: var(--gold); font-weight: 600; font-style: italic;
+164: }
+165: .hero-sub {
+166: font-size: 11px; letter-spacing: 6px;
+167: color: var(--white-muted); text-transform: uppercase;
+168: margin-bottom: 50px; font-weight: 400;
+169: }
+170: .hero-actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+171: .btn-primary {
+172: background: var(--gold); color: var(--black);
+173: border: none; padding: 16px 40px;
+174: font-family: var(--font-body); font-size: 10px;
+175: letter-spacing: 3px; text-transform: uppercase;
+176: font-weight: 600; cursor: pointer;
+177: transition: all 0.3s; text-decoration: none; display: inline-block;
+178: }
+179: .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+180: .btn-outline {
+181: background: transparent; color: var(--white);
+182: border: 1px solid rgba(255,255,255,0.4); padding: 16px 40px;
+183: font-family: var(--font-body); font-size: 10px;
+184: letter-spacing: 3px; text-transform: uppercase;
+185: font-weight: 500; cursor: pointer; transition: all 0.3s;
+186: text-decoration: none; display: inline-block;
+187: }
+188: .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+189: .hero-scroll {
+190: position: absolute; bottom: 40px; left: 50%;
+191: transform: translateX(-50%);
+192: display: flex; flex-direction: column;
+193: align-items: center; gap: 8px; z-index: 2;
+194: opacity: 0; animation: fadeIn 1s ease 1.8s forwards;
+195: }
+196: @keyframes fadeIn { to { opacity: 1; } }
+197: .hero-scroll span {
+198: font-size: 9px; letter-spacing: 4px;
+199: color: var(--white-dim); text-transform: uppercase;
+200: }
+201: .scroll-line {
+202: width: 1px; height: 50px;
+203: background: linear-gradient(to bottom, var(--gold), transparent);
+204: animation: scrollPulse 2s ease infinite;
+205: }
+206: @keyframes scrollPulse {
+207: 0%,100% { opacity: 0.4; transform: scaleY(1); }
+208: 50% { opacity: 1; transform: scaleY(1.1); }
+209: }
+210: 
+211: /* STATS BAR */
+212: .stats-bar {
+213: background: var(--gold);
+214: padding: 22px 60px;
+215: display: flex; justify-content: center;
+216: gap: 80px; flex-wrap: wrap;
+217: }
+218: .stat-item { display: flex; align-items: center; gap: 12px; }
+219: .stat-num {
+220: font-family: var(--font-display);
+221: font-size: 28px; font-weight: 600;
+222: color: var(--black); line-height: 1;
+223: }
+224: .stat-label {
+225: font-size: 9px; letter-spacing: 2px;
+226: color: rgba(8,8,8,0.7); text-transform: uppercase;
+227: font-weight: 600; line-height: 1.4;
+228: }
+229: 
+230: /* SECTIONS */
+231: section { padding: 110px 60px; }
+232: .section-eyebrow {
+233: display: inline-flex; align-items: center; gap: 14px;
+234: font-size: 9px; letter-spacing: 5px;
+235: color: var(--gold); text-transform: uppercase;
+236: font-weight: 600; margin-bottom: 20px;
+237: }
+238: .section-eyebrow::before {
+239: content: ''; width: 30px; height: 1px; background: var(--gold);
+240: }
+241: .section-title {
+242: font-family: var(--font-display);
+243: font-size: clamp(36px, 5vw, 58px);
+244: font-weight: 300; line-height: 1.1;
+245: color: var(--white); margin-bottom: 20px;
+246: }
+247: .section-title em { color: var(--gold); font-style: italic; }
+248: .section-text {
+249: font-size: 14px; color: var(--white-muted);
+250: line-height: 1.9; max-width: 560px; font-weight: 300;
+251: }
+252: 
+253: /* ABOUT */
+254: #about {
+255: background: var(--section-bg);
+256: display: grid; grid-template-columns: 1fr 1fr;
+257: gap: 80px; align-items: center; padding: 110px 80px;
+258: }
+259: .about-images { position: relative; height: 560px; }
+260: .about-img-main {
+261: position: absolute; right: 0; top: 0;
+262: width: 82%; height: 82%; object-fit: cover;
+263: }
+264: .about-img-accent {
+265: position: absolute; left: 0; bottom: 0;
+266: width: 52%; height: 52%; object-fit: cover;
+267: border: 4px solid var(--section-bg);
+268: }
+269: .about-gold-box {
+270: position: absolute; top: 50%; right: -20px;
+271: transform: translateY(-50%);
+272: background: var(--gold); color: var(--black);
+273: padding: 28px 22px; text-align: center; z-index: 2;
+274: }
+275: .about-gold-box .num {
+276: font-family: var(--font-display);
+277: font-size: 42px; font-weight: 700;
+278: line-height: 1; display: block;
+279: }
+280: .about-gold-box .lbl {
+281: font-size: 8px; letter-spacing: 2px;
+282: text-transform: uppercase; font-weight: 600;
+283: display: block; margin-top: 4px;
+284: }
+285: .about-features { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+286: .about-feature {
+287: display: flex; align-items: flex-start; gap: 16px;
+288: padding-bottom: 24px; border-bottom: 1px solid var(--black-border);
+289: }
+290: .feature-icon {
+291: width: 36px; height: 36px;
+292: border: 1px solid var(--gold);
+293: display: flex; align-items: center;
+294: justify-content: center; flex-shrink: 0; margin-top: 2px;
+295: }
+296: .feature-icon svg { width: 16px; height: 16px; fill: none; stroke: var(--gold); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+297: .feature-title {
+298: font-size: 12px; letter-spacing: 2px;
+299: text-transform: uppercase; color: var(--white);
+300: font-weight: 600; margin-bottom: 4px;
+301: }
+302: .feature-desc { font-size: 13px; color: var(--white-dim); line-height: 1.7; }
+303: 
+304: /* FLEET */
+305: #fleet { background: var(--black); text-align: center; padding: 110px 60px; }
+306: #fleet .section-eyebrow { justify-content: center; }
+307: #fleet .section-title { margin: 0 auto 14px; }
+308: #fleet .section-text { margin: 0 auto 60px; text-align: center; }
+309: .fleet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
+310: .fleet-card { position: relative; overflow: hidden; height: 380px; cursor: pointer; }
+311: .fleet-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+312: .fleet-card:hover img { transform: scale(1.06); }
+313: .fleet-card-overlay {
+314: position: absolute; inset: 0;
+315: background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.2) 60%, transparent 100%);
+316: transition: background 0.4s;
+317: }
+318: .fleet-card:hover .fleet-card-overlay {
+319: background: linear-gradient(to top, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.5) 100%);
+320: }
+321: .fleet-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px; text-align: left; }
+322: .fleet-tag { font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+323: .fleet-name { font-family: var(--font-display); font-size: 26px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+324: .fleet-detail {
+325: font-size: 11px; color: var(--white-dim); letter-spacing: 1px;
+326: opacity: 0; transform: translateY(10px); transition: all 0.4s;
+327: }
+328: .fleet-card:hover .fleet-detail { opacity: 1; transform: translateY(0); }
+329: 
+330: /* RESERVATION */
+331: #reservation {
+332: background: var(--section-bg); padding: 110px 80px;
+333: display: grid; grid-template-columns: 1fr 1.3fr;
+334: gap: 80px; align-items: start;
+335: }
+336: .res-contact-items { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+337: .res-contact-item { display: flex; align-items: center; gap: 16px; }
+338: .contact-icon-box {
+339: width: 44px; height: 44px;
+340: border: 1px solid var(--gold-dark);
+341: display: flex; align-items: center;
+342: justify-content: center; flex-shrink: 0;
+343: }
+344: .contact-icon-box svg { width: 18px; height: 18px; fill: none; stroke: var(--gold); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+345: .contact-info-label { font-size: 9px; letter-spacing: 3px; color: var(--white-dim); text-transform: uppercase; font-weight: 600; margin-bottom: 3px; }
+346: .contact-info-val { font-family: var(--font-display); font-size: 18px; color: var(--white); font-weight: 400; }
+347: .res-form {
+348: background: var(--black-card);
+349: border: 1px solid var(--black-border); padding: 50px 44px;
+350: }
+351: .res-form-title { font-family: var(--font-display); font-size: 28px; font-weight: 400; color: var(--white); margin-bottom: 8px; }
+352: .res-form-sub { font-size: 11px; color: var(--white-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 36px; }
+353: .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+354: .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+355: .form-group label { font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; font-weight: 600; }
+356: .form-group input, .form-group select, .form-group textarea {
+357: background: rgba(255,255,255,0.03);
+358: border: 1px solid var(--black-border);
+359: border-bottom: 1px solid rgba(201,168,76,0.3);
+360: color: var(--white); padding: 14px 16px;
+361: font-family: var(--font-body); font-size: 13px;
+362: font-weight: 300; outline: none;
+363: transition: border-color 0.3s, background 0.3s; -webkit-appearance: none;
+364: }
+365: .form-group select option { background: var(--black-card); color: var(--white); }
+366: .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+367: border-color: var(--gold); background: rgba(201,168,76,0.04);
+368: }
+369: .form-group input::placeholder, .form-group textarea::placeholder { color: var(--white-dim); font-size: 12px; }
+370: .form-group textarea { resize: vertical; min-height: 90px; }
+371: .form-submit {
+372: width: 100%; background: var(--gold); color: var(--black);
+373: border: none; padding: 18px; font-family: var(--font-body);
+374: font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+375: font-weight: 700; cursor: pointer; transition: all 0.3s; margin-top: 8px;
+376: }
+377: .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+378: 
+379: /* TESTIMONIALS */
+380: #testimonials { background: var(--black); padding: 110px 60px; text-align: center; }
+381: #testimonials .section-eyebrow { justify-content: center; }
+382: .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+383: .testimonial-card {
+384: background: var(--black-card); border: 1px solid var(--black-border);
+385: padding: 40px 32px; text-align: left;
+386: position: relative; transition: border-color 0.3s;
+387: }
+388: .testimonial-card:hover { border-color: rgba(201,168,76,0.3); }
+389: .testimonial-quote { font-family: var(--font-display); font-size: 64px; color: var(--gold); line-height: 0.5; margin-bottom: 20px; opacity: 0.4; }
+390: .testimonial-text { font-family: var(--font-display); font-size: 17px; font-style: italic; color: var(--white-muted); line-height: 1.7; margin-bottom: 24px; font-weight: 300; }
+391: .testimonial-author { display: flex; align-items: center; gap: 12px; padding-top: 20px; border-top: 1px solid var(--black-border); }
+392: .author-avatar {
+393: width: 40px; height: 40px; background: var(--gold);
+394: display: flex; align-items: center; justify-content: center;
+395: font-family: var(--font-display); font-size: 18px;
+396: font-weight: 600; color: var(--black); flex-shrink: 0;
+397: }
+398: .author-name { font-size: 12px; font-weight: 600; letter-spacing: 2px; color: var(--white); text-transform: uppercase; }
+399: .author-location { font-size: 11px; color: var(--white-dim); margin-top: 2px; }
+400: .stars { color: var(--gold); font-size: 12px; letter-spacing: 2px; margin-bottom: 16px; }
+401: .testimonials-empty-msg {
+402: font-family: var(--font-display);
+403: font-size: 22px; color: var(--white-dim);
+404: font-style: italic; padding: 40px;
+405: }
+406: 
+407: /* CONTACT */
+408: #contact {
+409: background: var(--section-bg); padding: 110px 80px;
+410: display: grid; grid-template-columns: 1.2fr 1fr;
+411: gap: 100px; align-items: center;
+412: }
+413: .contact-form-title { font-family: var(--font-display); font-size: 38px; font-weight: 300; color: var(--white); margin-bottom: 10px; }
+414: .contact-form-sub { font-size: 12px; color: var(--white-dim); letter-spacing: 2px; margin-bottom: 36px; }
+415: .contact-form .form-group { margin-bottom: 20px; }
+416: .contact-submit {
+417: background: transparent; border: 1px solid var(--gold);
+418: color: var(--gold); padding: 16px 44px;
+419: font-family: var(--font-body); font-size: 10px;
+420: letter-spacing: 4px; text-transform: uppercase;
+421: font-weight: 600; cursor: pointer; transition: all 0.3s;
+422: }
+423: .contact-submit:hover { background: var(--gold); color: var(--black); }
+424: .contact-info-side { display: flex; flex-direction: column; gap: 36px; }
+425: .contact-info-card { border-left: 2px solid var(--gold-dark); padding-left: 24px; }
+426: .contact-info-card-title { font-size: 9px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+427: .contact-info-card-val { font-family: var(--font-display); font-size: 22px; font-weight: 300; color: var(--white); }
+428: .contact-info-card a { color: var(--white); text-decoration: none; transition: color 0.3s; }
+429: .contact-info-card a:hover { color: var(--gold); }
+430: .social-links { display: flex; gap: 12px; margin-top: 8px; }
+431: .social-link {
+432: width: 40px; height: 40px; border: 1px solid var(--black-border);
+433: display: flex; align-items: center; justify-content: center;
+434: text-decoration: none; color: var(--white-dim);
+435: font-size: 14px; transition: all 0.3s;
+436: }
+437: .social-link:hover { border-color: var(--gold); color: var(--gold); }
+438: 
+439: /* FOOTER */
+440: footer {
+441: background: var(--black);
+442: border-top: 1px solid var(--black-border);
+443: padding: 50px 80px 30px;
+444: }
+445: .footer-top {
+446: display: grid; grid-template-columns: 2fr 1fr 1fr;
+447: gap: 60px; padding-bottom: 40px;
+448: border-bottom: 1px solid var(--black-border); margin-bottom: 30px;
+449: }
+450: .footer-logo-top { font-family: var(--font-display); font-size: 22px; font-weight: 600; letter-spacing: 5px; color: var(--white); }
+451: .footer-logo-top span { color: var(--gold); }
+452: .footer-logo-sub { font-size: 8px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; font-weight: 500; margin-top: 3px; margin-bottom: 16px; }
+453: .footer-desc { font-size: 13px; color: var(--white-dim); line-height: 1.8; max-width: 300px; }
+454: .footer-col-title { font-size: 9px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+455: .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+456: .footer-links a { text-decoration: none; color: var(--white-dim); font-size: 13px; transition: color 0.3s; }
+457: .footer-links a:hover { color: var(--gold); }
+458: .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+459: .footer-copy { font-size: 11px; color: var(--white-dim); letter-spacing: 1px; }
+460: .footer-copy span { color: var(--gold); }
+461: 
+462: /* WHATSAPP */
+463: .whatsapp-btn {
+464: position: fixed; bottom: 30px; right: 30px;
+465: width: 56px; height: 56px; background: #25D366;
+466: border-radius: 50%; display: flex;
+467: align-items: center; justify-content: center;
+468: box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+469: z-index: 999; text-decoration: none;
+470: transition: transform 0.3s, box-shadow 0.3s;
+471: animation: waPop 0.5s ease 2.5s both;
+472: }
+473: @keyframes waPop { from { transform: scale(0); } to { transform: scale(1); } }
+474: .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+475: .whatsapp-btn svg { width: 28px; height: 28px; fill: white; }
+476: 
+477: /* MOBILE NAV */
+478: .mobile-nav {
+479: display: none; position: fixed; inset: 0;
+480: background: rgba(8,8,8,0.98); z-index: 999;
+481: flex-direction: column; align-items: center;
+482: justify-content: center; gap: 36px;
+483: backdrop-filter: blur(12px);
+484: }
+485: .mobile-nav.active { display: flex; }
+486: .mobile-nav a {
+487: text-decoration: none; color: var(--white);
+488: font-family: var(--font-display); font-size: 36px;
+489: font-weight: 300; letter-spacing: 4px; transition: color 0.3s;
+490: }
+491: .mobile-nav a:hover { color: var(--gold); }
+492: .mobile-nav-close {
+493: position: absolute; top: 28px; right: 28px;
+494: background: none; border: none; color: var(--gold);
+495: font-size: 28px; cursor: pointer; line-height: 1;
+496: }
+497: 
+498: /* RESPONSIVE */
+499: @media (max-width: 1024px) {
+500: #navbar { padding: 18px 30px; }
+501: #navbar.scrolled { padding: 12px 30px; }
+502: .nav-links { display: none; }
+503: .nav-cta { display: none; }
+504: .hamburger { display: flex; }
+505: #about { grid-template-columns: 1fr; padding: 80px 30px; gap: 50px; }
+506: .about-images { height: 350px; }
+507: .about-gold-box { right: 10px; }
+508: #reservation { grid-template-columns: 1fr; padding: 80px 30px; gap: 50px; }
+509: #contact { grid-template-columns: 1fr; padding: 80px 30px; gap: 50px; }
+510: .fleet-grid { grid-template-columns: 1fr; }
+511: .fleet-card { height: 280px; }
+512: .testimonials-grid { grid-template-columns: 1fr; }
+513: .stats-bar { padding: 20px 30px; gap: 40px; }
+514: section { padding: 80px 30px; }
+515: .footer-top { grid-template-columns: 1fr; gap: 36px; }
+516: footer { padding: 50px 30px 30px; }
+517: .form-row { grid-template-columns: 1fr; }
+518: .res-form { padding: 36px 24px; }
+519: }
+520: </style>
+521: 
+522: <div id="app">
+523: 
+524: <!-- NAVBAR -->
+525: <nav id="navbar">
+526: <a href="#anasayfa" class="nav-logo">
+527: <span class="nav-logo-top">SKY <span>TRAVEL</span></span>
+528: <span class="nav-logo-sub">VIP Transfer Hizmetleri</span>
+529: </a>
+530: <ul class="nav-links">
+531: <li><a href="#anasayfa">Ana Sayfa</a></li>
+532: <li><a href="#hakkimizda">Hakkımızda</a></li>
+533: <li><a href="#araclar">Araçlarımız</a></li>
+534: <li><a href="#rezervasyon">Rezervasyon</a></li>
+535: <li><a href="#yorumlar">Yorumlar</a></li>
+536: <li><a href="#iletisim">İletişim</a></li>
+537: </ul>
+538: <a href="#rezervasyon" class="nav-cta">Rezervasyon Yap</a>
+539: <div class="hamburger" id="hamburger">
+540: <span></span><span></span><span></span>
+541: </div>
+542: </nav>
+543: 
+544: <!-- MOBILE NAV -->
+545: <div class="mobile-nav" id="mobileNav">
+546: <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+547: <a href="#anasayfa" class="mobile-nav-link">Ana Sayfa</a>
+548: <a href="#hakkimizda" class="mobile-nav-link">Hakkımızda</a>
+549: <a href="#araclar" class="mobile-nav-link">Araçlarımız</a>
+550: <a href="#rezervasyon" class="mobile-nav-link">Rezervasyon</a>
+551: <a href="#yorumlar" class="mobile-nav-link">Yorumlar</a>
+552: <a href="#iletisim" class="mobile-nav-link">İletişim</a>
+553: </div>
+554: 
+555: <!-- HERO -->
+556: <section id="anasayfa" style="padding:0; position:relative; height:100vh; min-height:700px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+557: <div class="hero-bg"></div>
+558: <div class="hero-overlay"></div>
+559: <div class="hero-overlay-bottom"></div>
+560: <div class="hero-content">
+561: <div class="hero-eyebrow">Premium VIP Transfer</div>
+562: <h1 class="hero-title">SKY<br><strong>TRAVEL</strong><br>VIP</h1>
+563: <p class="hero-sub">Havalimanı Transferi &nbsp;·&nbsp; Şehir Turu &nbsp;·&nbsp; Özel Şoför</p>
+564: <div class="hero-actions">
+565: <a href="#rezervasyon" class="btn-primary">Rezervasyon Yap</a>
+566: <a href="#hakkimizda" class="btn-outline">Daha Fazla Bilgi</a>
+567: </div>
+568: </div>
+569: <div class="hero-scroll">
+570: <span>Kaydır</span>
+571: <div class="scroll-line"></div>
+572: </div>
+573: </section>
+574: 
+575: <!-- STATS BAR -->
+576: <div class="stats-bar">
+577: <div class="stat-item">
+578: <span class="stat-num">500+</span>
+579: <span class="stat-label">Mutlu<br>Müşteri</span>
+580: </div>
+581: <div class="stat-item">
+582: <span class="stat-num">7/24</span>
+583: <span class="stat-label">Saat<br>Hizmet</span>
+584: </div>
+585: <div class="stat-item">
+586: <span class="stat-num">%100</span>
+587: <span class="stat-label">Zamanında<br>Garanti</span>
+588: </div>
+589: <div class="stat-item">
+590: <span class="stat-num">5★</span>
+591: <span class="stat-label">Müşteri<br>Puanı</span>
+592: </div>
+593: </div>
+594: 
+595: <!-- HAKKIMIZDA -->
+596: <section id="hakkimizda">
+597: <div class="about-images">
+600: <div class="about-gold-box">
+601: <span class="num">5+</span>
+602: <span class="lbl">Yıllık<br>Tecrübe</span>
+603: </div>
+604: </div>
+605: <div class="about-text">
+606: <div class="section-eyebrow">Biz Kimiz</div>
+607: <h2 class="section-title">Lüks Seyahat,<br><em>Yeniden Tanımlandı</em></h2>
+608: <p class="section-text">
+609: SKY TRAVEL VIP; konfor, dakiklik ve profesyonelliğe değer veren seçkin yolcular için premium VIP transfer hizmetleri sunmaktadır. Özenle bakımı yapılmış lüks Mercedes araç filomuz ve deneyimli şoförlerimizle her yolculuğu birinci sınıf bir deneyime dönüştürüyoruz.
+610: </p>
+611: <div class="about-features">
+612: <div class="about-feature">
+613: <div class="feature-icon">
+614: <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+615: </div>
+616: <div>
+617: <div class="feature-title">Profesyonel Şoförler</div>
+618: <div class="feature-desc">Bireysel ihtiyaçlarınızı karşılamak üzere eğitilmiş, çok dilli ve deneyimli şoförlerimiz her an hizmetinizde.</div>
+619: </div>
+620: </div>
+621: <div class="about-feature">
+622: <div class="feature-icon">
+623: <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+624: </div>
+625: <div>
+626: <div class="feature-title">Güvenli ve Güvenilir</div>
+627: <div class="feature-desc">Tüm araçlarımız tam sigortalı olup en yüksek güvenlik standartlarında düzenli olarak bakımdan geçirilmektedir.</div>
+628: </div>
+629: </div>
+630: <div class="about-feature">
+631: <div class="feature-icon">
+632: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+633: </div>
+634: <div>
+635: <div class="feature-title">7/24 Hizmet</div>
+636: <div class="feature-desc">Resmi tatiller ve erken sabah uçuşları dahil yılın 365 günü, günün her saatinde hizmetinizdeyiz.</div>
+637: </div>
+638: </div>
+639: </div>
+640: </div>
+641: </section>
+642: 
+643: <!-- ARAÇLARIMIZ -->
+644: <section id="araclar">
+645: <div class="section-eyebrow">Araç Filomuz</div>
+646: <h2 class="section-title">Premium <em>Araçlarımız</em></h2>
+647: <p class="section-text">Filomuzdaki her araç lüksün simgesidir; yolcu konforu, zarafet ve performans gözetilerek titizlikle seçilmiştir.</p>
+648: <div class="fleet-grid">
+649: <div class="fleet-card">
+651: <div class="fleet-card-overlay"></div>
+652: <div class="fleet-card-info">
+653: <div class="fleet-tag">Executive Sınıf</div>
+654: <div class="fleet-name">Mercedes Vito VIP</div>
+655: <div class="fleet-detail">6 yolcuya kadar · Deri iç döşeme · İklim kontrolü</div>
+656: </div>
+657: </div>
+658: <div class="fleet-card">
+660: <div class="fleet-card-overlay"></div>
+661: <div class="fleet-card-info">
+662: <div class="fleet-tag">Havalimanı Transferi</div>
+663: <div class="fleet-name">Mercedes V-Sınıf</div>
+664: <div class="fleet-detail">7 yolcuya kadar · Uçuş takibi · Karşılama servisi</div>
+665: </div>
+666: </div>
+667: <div class="fleet-card">
+669: <div class="fleet-card-overlay"></div>
+670: <div class="fleet-card-info">
+671: <div class="fleet-tag">Özel Şoför</div>
+672: <div class="fleet-name">Mercedes Lüks</div>
+673: <div class="fleet-detail">Premium konfor · İş seyahatine uygun · Tam gizlilik</div>
+674: </div>
+675: </div>
+676: </div>
+677: </section>
+678: 
+679: <!-- REZERVASYON -->
+680: <section id="rezervasyon">
+681: <div class="res-left">
+682: <div class="section-eyebrow">Yolculuk Ayarlayın</div>
+683: <h2 class="section-title">Rezervasyon<br><em>Yapın</em></h2>
+684: <p class="section-text">
+685: Lüks transferinizi dakikalar içinde ayarlayın. Ekibimiz rezervasyonunuzu onaylayarak alış noktasından varış noktasına kadar sorunsuz bir deneyim sağlayacaktır.
+686: </p>
+687: <div class="res-contact-items">
+688: <div class="res-contact-item">
+689: <div class="contact-icon-box">
+690: <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 11c-.82-2.67-1.07-5.65.07-8.18A2 2 0 015.11 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+691: </div>
+692: <div>
+693: <div class="contact-info-label">Telefon / WhatsApp</div>
+694: <div class="contact-info-val">+90 505 478 86 42</div>
+695: </div>
+696: </div>
+697: <div class="res-contact-item">
+698: <div class="contact-icon-box">
+699: <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+700: </div>
+701: <div>
+702: <div class="contact-info-label">E-posta</div>
+703: <div class="contact-info-val">info@skytravelvip.com</div>
+704: </div>
+705: </div>
+706: <div class="res-contact-item">
+707: <div class="contact-icon-box">
+708: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+709: </div>
+710: <div>
+711: <div class="contact-info-label">Hizmet Saatleri</div>
+712: <div class="contact-info-val">7/24 — 365 Gün</div>
+713: </div>
+714: </div>
+715: </div>
+716: </div>
+717: 
+718: <div class="res-form">
+719: <div class="res-form-title">Rezervasyon Formu</div>
+720: <div class="res-form-sub">Bilgilerinizi doldurun</div>
+721: <div class="form-row">
+722: <div class="form-group">
+723: <label>Ad</label>
+724: <input type="text" placeholder="Adınız">
+725: </div>
+726: <div class="form-group">
+727: <label>Soyad</label>
+728: <input type="text" placeholder="Soyadınız">
+729: </div>
+730: </div>
+731: <div class="form-row">
+732: <div class="form-group">
+733: <label>E-posta</label>
+734: <input type="email" placeholder="eposta@ornek.com">
+735: </div>
+736: <div class="form-group">
+737: <label>Telefon</label>
+738: <input type="tel" placeholder="+90 ...">
+739: </div>
+740: </div>
+741: <div class="form-group">
+742: <label>Alış Noktası</label>
+743: <input type="text" placeholder="örn. Dalaman Havalimanı">
+744: </div>
+745: <div class="form-group">
+746: <label>Varış Noktası</label>
+747: <input type="text" placeholder="örn. Fethiye Otel">
+748: </div>
+749: <div class="form-row">
+750: <div class="form-group">
+751: <label>Uçuş Numarası</label>
+752: <input type="text" placeholder="TK 1234">
+753: </div>
+754: <div class="form-group">
+755: <label>Tarih</label>
+756: <input type="date">
+757: </div>
+758: </div>
+759: <div class="form-row">
+760: <div class="form-group">
+761: <label>Saat</label>
+762: <input type="time">
+763: </div>
+764: <div class="form-group">
+765: <label>Yolcu Sayısı</label>
+766: <select>
+767: <option value="">Seçiniz</option>
+768: <option>1 Yetişkin</option>
+769: <option>2 Yetişkin</option>
+770: <option>3 Yetişkin</option>
+771: <option>4 Yetişkin</option>
+772: <option>5 Yetişkin</option>
+773: <option>6 Yetişkin</option>
+774: <option>7 Yetişkin</option>
+775: </select>
+776: </div>
+777: </div>
+778: <div class="form-group">
+779: <label>Notlar</label>
+780: <textarea placeholder="Özel istekler, çocuk koltuğu vb."></textarea>
+781: </div>
+782: <button class="form-submit" id="resBtn">Rezervasyon Talebi Gönder</button>
+783: </div>
+784: </section>
+785: 
+786: <!-- MÜŞTERİ YORUMLARI -->
+787: <section id="yorumlar">
+788: <div class="section-eyebrow">Müşteri Yorumları</div>
+789: <h2 class="section-title">Misafirlerimiz Ne <em>Diyor</em></h2>
+790: <div class="testimonials-grid" id="testimonialsGrid"></div>
+791: <p class="testimonials-empty-msg" id="testimonialsEmpty">Yorumlar yakında eklenecek...</p>
+792: </section>
+793: 
+794: <!-- İLETİŞİM -->
+795: <section id="iletisim">
+796: <div>
+797: <div class="contact-form-title">Bize Ulaşın</div>
+798: <div class="contact-form-sub">Sizden haber almaktan memnuniyet duyarız</div>
+799: <div class="contact-form">
+800: <div class="form-group">
+801: <label>Ad Soyad</label>
+802: <input type="text" placeholder="Adınız Soyadınız">
+803: </div>
+804: <div class="form-group">
+805: <label>E-posta Adresi</label>
+806: <input type="email" placeholder="eposta@ornek.com">
+807: </div>
+808: <div class="form-group">
+809: <label>Mesajınız</label>
+810: <textarea placeholder="Size nasıl yardımcı olabiliriz?" style="min-height:120px;"></textarea>
+811: </div>
+812: <button class="contact-submit" id="contactBtn">Mesaj Gönder</button>
+813: </div>
+814: </div>
+815: <div class="contact-info-side">
+816: <div class="contact-info-card">
+817: <div class="contact-info-card-title">Telefon ve WhatsApp</div>
+818: <div class="contact-info-card-val"><a href="tel:+905054788642">+90 505 478 86 42</a></div>
+819: </div>
+820: <div class="contact-info-card">
+821: <div class="contact-info-card-title">E-posta</div>
+822: <div class="contact-info-card-val"><a href="mailto:info@skytravelvip.com">info@skytravelvip.com</a></div>
+823: </div>
+824: <div class="contact-info-card">
+825: <div class="contact-info-card-title">Bizi Takip Edin</div>
+826: <div class="social-links">
+827: <a href="https://www.instagram.com/skytravelvip/" class="social-link" target="_blank">
+828: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+829: </a>
+830: <a href="https://wa.me/905054788642" class="social-link" target="_blank">
+831: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+832: </a>
+833: </div>
+834: </div>
+835: <div class="contact-info-card">
+836: <div class="contact-info-card-title">Hizmet Bölgesi</div>
+837: <div class="contact-info-card-val" style="font-size:16px; line-height:1.7;">
+838: Dalaman · Fethiye · Marmaris<br>Bodrum · Milas · Muğla
+839: </div>
+840: </div>
+841: </div>
+842: </section>
+843: 
+844: <!-- FOOTER -->
+845: <footer>
+846: <div class="footer-top">
+847: <div>
+848: <div class="footer-logo-top">SKY <span>TRAVEL</span></div>
+849: <div class="footer-logo-sub">VIP Transfer Hizmetleri</div>
+850: <p class="footer-desc">Her yolculuğu ayrıcalıklı kılan premium VIP transfer hizmetleri. Konfor, dakiklik ve profesyonellik bizim taahhüdümüzdür.</p>
+851: </div>
+852: <div>
+853: <div class="footer-col-title">Hızlı Bağlantılar</div>
+854: <ul class="footer-links">
+855: <li><a href="#anasayfa">Ana Sayfa</a></li>
+856: <li><a href="#hakkimizda">Hakkımızda</a></li>
+857: <li><a href="#araclar">Araçlarımız</a></li>
+858: <li><a href="#rezervasyon">Rezervasyon</a></li>
+859: <li><a href="#iletisim">İletişim</a></li>
+860: </ul>
+861: </div>
+862: <div>
+863: <div class="footer-col-title">Hizmetlerimiz</div>
+864: <ul class="footer-links">
+865: <li><a href="#rezervasyon">Havalimanı Transferi</a></li>
+866: <li><a href="#rezervasyon">Şehir Turu</a></li>
+867: <li><a href="#rezervasyon">Özel Şoför</a></li>
+868: <li><a href="#rezervasyon">Otel Transferi</a></li>
+869: <li><a href="#rezervasyon">Kurumsal Seyahat</a></li>
+870: </ul>
+871: </div>
+872: </div>
+873: <div class="footer-bottom">
+874: <div class="footer-copy">&copy; 2025 <span>SKY TRAVEL VIP</span>. Tüm hakları saklıdır.</div>
+875: <div class="footer-copy">Lüks için tasarlandı — sizin için üretildi.</div>
+876: </div>
+877: </footer>
+878: 
+879: <!-- WHATSAPP -->
+880: <a href="https://wa.me/905054788642" class="whatsapp-btn" target="_blank">
+881: <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+882: </a>
+883: 
+884: </div>
+885: 
+886: <script>
+887: document.addEventListener("DOMContentLoaded", function() {
+888: 
+889: // NAVBAR SCROLL
+890: const navbar = document.getElementById('navbar');
+891: window.addEventListener('scroll', function() {
+892: navbar.classList.toggle('scrolled', window.scrollY > 60);
+893: });
+894: 
+895: // MOBILE NAV
+896: document.getElementById('hamburger').addEventListener('click', function() {
+897: document.getElementById('mobileNav').classList.add('active');
+898: document.body.style.overflow = 'hidden';
+899: });
+900: document.getElementById('mobileNavClose').addEventListener('click', function() {
+901: document.getElementById('mobileNav').classList.remove('active');
+902: document.body.style.overflow = '';
+903: });
+904: document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+905: link.addEventListener('click', function() {
+906: document.getElementById('mobileNav').classList.remove('active');
+907: document.body.style.overflow = '';
+908: });
+909: });
+910: 
+911: // MÜŞTERİ YORUMLARI - Boş bırakıldı, uygulama üzerinden eklenecek
+912: // Kullanım: addTestimonial('Ad Soyad', 'Şehir', 'Yorum metni', 5);
+913: function addTestimonial(name, location, text, stars) {
+914: document.getElementById('testimonialsEmpty').style.display = 'none';
+915: const initials = name.split(' ').map(function(n) { return n[0]; }).join('');
+916: const starsHtml = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+917: const card = document.createElement('div');
+918: card.className = 'testimonial-card';
+919: card.innerHTML =
+920: '<div class="testimonial-quote">"</div>' +
+921: '<div class="stars">' + starsHtml + '</div>' +
+922: '<div class="testimonial-text">' + text + '</div>' +
+923: '<div class="testimonial-author">' +
+924: '<div class="author-avatar">' + initials + '</div>' +
+925: '<div>' +
+926: '<div class="author-name">' + name + '</div>' +
+927: '<div class="author-location">' + location + '</div>' +
+928: '</div>' +
+929: '</div>';
+930: document.getElementById('testimonialsGrid').appendChild(card);
+931: }
+932: window.addTestimonial = addTestimonial;
+933: 
+934: // REZERVASYON FORMU
+935: document.getElementById('resBtn').addEventListener('click', function() {
+936: const inputs = document.querySelectorAll('#rezervasyon input, #rezervasyon select, #rezervasyon textarea');
+937: let allFilled = true;
+938: inputs.forEach(function(inp) {
+939: if (!inp.value.trim()) {
+940: inp.style.borderColor = '#c0392b';
+941: allFilled = false;
+942: } else {
+943: inp.style.borderColor = '';
+944: }
+945: });
+946: if (allFilled) {
+947: this.textContent = '✓ Talebiniz Gönderildi!';
+948: this.style.background = '#27ae60';
+949: this.style.color = 'white';
+950: const btn = this;
+951: setTimeout(function() {
+952: btn.textContent = 'Rezervasyon Talebi Gönder';
+953: btn.style.background = '';
+954: btn.style.color = '';
+955: }, 3000);
+956: }
+957: });
+958: 
+959: // İLETİŞİM FORMU
+960: document.getElementById('contactBtn').addEventListener('click', function() {
+961: this.textContent = '✓ Mesajınız İletildi!';
+962: this.style.background = 'var(--gold)';
+963: this.style.color = 'var(--black)';
+964: const btn = this;
+965: setTimeout(function() {
+966: btn.textContent = 'Mesaj Gönder';
+967: btn.style.background = '';
+968: btn.style.color = '';
+969: }, 3000);
+970: });
+971: 
+972: // SCROLL ANİMASYONLARI
+973: const observer = new IntersectionObserver(function(entries) {
+974: entries.forEach(function(entry) {
+975: if (entry.isIntersecting) {
+976: entry.target.style.opacity = '1';
+977: entry.target.style.transform = 'translateY(0)';
+978: }
+979: });
+980: }, { threshold: 0.1 });
+981: 
+982: document.querySelectorAll('.about-feature, .fleet-card, .testimonial-card, .stat-item').forEach(function(el) {
+983: el.style.opacity = '0';
+984: el.style.transform = 'translateY(30px)';
+985: el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+986: observer.observe(el);
+987: });
+988: 
+989: });
+990: </script>
+991: </body>
+992: </html>

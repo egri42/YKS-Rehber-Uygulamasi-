@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "772895147005",
+    "project_id": "yks-asistanim-30502",
+    "storage_bucket": "yks-asistanim-30502.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772895147005:android:7d519caec13bbf02f5cf94",
+        "android_client_info": {
+          "package_name": "com.example.ilk_projem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO3swbg9v1_8XX78AFYKIRU_9lf3cv5RI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
