@@ -19,7 +19,7 @@
 
 Uygulama, öğrencinin çalışma düzenini **algoritmik olarak analiz eder**, kişiselleştirilmiş öneriler sunar ve Pomodoro tekniği ile verimli çalışma seansları oluşturur. Glassmorphism tasarım dili ile modern ve şık bir kullanıcı deneyimi sağlar.
 
-> **Geliştirici:** Mehmet Emin Eğri — 231213053  
+> **Geliştirici:** Mehmet Emin Eğri 
 > **Proje Türü:** Hibrit Karar Destek Mekanizmalı Ders Takip Uygulaması
 
 ---
